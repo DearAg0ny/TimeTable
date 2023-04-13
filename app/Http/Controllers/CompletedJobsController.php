@@ -11,17 +11,6 @@ use Illuminate\Support\Facades\DB;
 class CompletedJobsController extends Controller
 {
 
-    public function index()
-    {
-        $services = DB::table('services')
-            ->select('date','company_name','service_name','description','from','to')
-            ->join('completed_jobs','completed_jobs.id','=','services.service_id')
-            ->get();
-
-        return response()->json($services);
-
-    }
-
     public function addCompletedJob(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -44,6 +33,13 @@ class CompletedJobsController extends Controller
             'from' => request('from'),
             'to' => request('to')
         ]);
+
+        $services = DB::table('services')
+            ->select('date','company_name','service_name','description','from','to')
+            ->join('completed_jobs','completed_jobs.id','=','services.service_id')
+            ->get();
+
+        return response()->json($services);
     }
 
     public function deleteCompletedJob($id)
