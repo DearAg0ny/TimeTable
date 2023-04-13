@@ -20,7 +20,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 //FR 4
-Route::get('/test',[CompletedJobsController::class,'index']);
 Route::post('/completedJob/store',[CompletedJobsController::class,'addCompletedJob']);
 Route::get('/completedJob/delete/{id}',[CompletedJobsController::class,'deleteCompletedJob']);
 Route::post('/completedJob/update/{id}',[CompletedJobsController::class,'update']);
