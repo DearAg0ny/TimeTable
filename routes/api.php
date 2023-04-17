@@ -3,6 +3,8 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\RegisterController;
+use App\Models\CompletedJobs;
+use App\Models\Customer;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,10 +45,17 @@ Route::middleware(['api'])->group(function ($router) {
     Route::get('email/resend', 'VerificationController@resend')->name('verification.resend');
     Route::post('password/email', 'ForgotPasswordController@forgot');
     Route::post('password/reset', 'ForgotPasswordController@reset');
+    //FR4
+    Route::post('/completedJob/store',[CompletedJobsController::class,'addCompletedJob']);
+    Route::get('/completedJob/delete/{id}',[CompletedJobsController::class,'deleteCompletedJob']);
+    Route::post('/completedJob/update/{id}',[CompletedJobsController::class,'update']);
+    //FR2
+    Route::get('/all',[CustomerController::class,'customers']);
+    Route::post('/add-customer',[CustomerController::class,'addCustomer']);
+    Route::get('/customer/delete/{id}',[CustomerController::class,'delete']);
+    Route::post('/update-customer/{id}',[CustomerController::class,'update']);
+    //FR 3 
+    Route::post('/add-service',[ServiceController::class, 'addService']);
+    Route::get('/delete/{id}',[ServiceController::class,'delete']);
+    Route::post('/update/{id}',[ServiceController::class,'update']);
 });
-
-/*Service Routes*/
-
-Route::post('/add-service',[ServiceController::class, 'addService']);
-Route::get('/delete/{id}',[ServiceController::class,'delete']);
-Route::post('/update/{id}',[ServiceController::class,'update']);
