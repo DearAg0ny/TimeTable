@@ -44,3 +44,9 @@ Route::middleware(['api'])->group(function ($router) {
     Route::post('password/email', 'ForgotPasswordController@forgot');
     Route::post('password/reset', 'ForgotPasswordController@reset');
 });
+
+/*Service Routes*/
+
+Route::post('/add-service',[ServiceController::class, 'addService']);
+Route::get('/delete/{id}',[ServiceController::class,'delete']);
+Route::post('/update/{id}',[ServiceController::class,'update']);
