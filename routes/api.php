@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\RegisterController;
 use App\Models\CompletedJobs;
 use App\Models\Customer;
+use App\Http\Controllers\ServiceController;
+use App\Http\Controllers\ViewtaskController;
 
 /*
 |--------------------------------------------------------------------------
@@ -59,3 +61,4 @@ Route::middleware(['api'])->group(function ($router) {
     Route::get('/delete/{id}',[ServiceController::class,'delete']);
     Route::post('/update/{id}',[ServiceController::class,'update']);
 });
+Route::get('/view-task',[viewtaskController::class,'viewTask']);
